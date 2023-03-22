@@ -31,9 +31,9 @@ img {
 .photo-card {
     display: inline-block;
     width: 350px;
-    border: 1px solid rgb(26, 36, 58);
+    border: 1px solid rgb(123, 129, 143);
     border-radius: 10px;
-    background-color: rgb(196, 196, 196);
+    background-color: rgb(215, 209, 209);
 
 
 }
@@ -41,9 +41,6 @@ img {
 .photo {
     min-width: 300px;
     height: 200px;
-
-
-
 }
 
 .info {
@@ -79,7 +76,7 @@ form {
 }
 
 .search-form {
-    background-color: rgb(63 86 177);
+    background-color: rgb(52, 83, 205);
 }
 
 .input {
@@ -111,7 +108,7 @@ button {
 
     font-size: 16px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background: rgb(172, 184, 38);
+    background: rgba(167, 246, 39, 0.837);
     border: none;
     position: relative;
     color: black;
@@ -128,12 +125,12 @@ button::before {
     position: absolute;
     bottom: 0;
     right: 0;
-    z-index: -99999;
+    z-index: -9;
     transition: all 0.4s;
 }
 
 .load-more {
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 40px;
+    margin-bottom: 55px;
 }

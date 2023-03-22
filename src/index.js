@@ -2,19 +2,18 @@ import axios from 'axios';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import Notiflix from 'notiflix';
-import simpleLightbox from 'simplelightbox';
 
 const refs = {
   form: document.querySelector('.search-form'),
   input: document.querySelector('input'),
   gallery: document.querySelector('.gallery'),
-  btnLoadMore: document.querySelector('.load-more'),
+  // btnLoadMore: document.querySelector('.load-more'),
 };
 
 let page = 1;
-refs.btnLoadMore.style.display = 'none';
+// refs.btnLoadMore.style.display = 'none';
 refs.form.addEventListener('submit', onSearch);
-refs.btnLoadMore.addEventListener('click', onBtnLoadMore);
+// refs.btnLoadMore.addEventListener('click', onBtnLoadMore);
 
 function onSearch(e) {
   e.preventDefault();
@@ -26,7 +25,7 @@ function onSearch(e) {
   if (name !== '') {
     pixabay(name);
   } else {
-    refs.btnLoadMore.style.display = 'none';
+    // refs.btnLoadMore.style.display = 'none';
     return Notiflix.Notify.failure(
       `Sorry, there are no images matching your search query. Please try again.`
     );
@@ -62,16 +61,17 @@ async function pixabay(name, page) {
     console.log(error);
   }
 }
+
 function createMarkup(arr) {
   const markup = arr.hits
     .map(
       item =>
         `<a class="photo-link" href="${item.largeImageURL}">
-        <div class="photo-card">
-        <div class="photo">
-            <img src="${item.webformatURL}" alt="${item.tags}" loading="lazy" />
-            </div>
-                <div class="info">
+            <div class="photo-card">
+              <div class="photo">
+                <img src="${item.webformatURL}" alt="${item.tags}" loading="lazy" />
+                  </div>
+                    <div class="info">
                   <p class="info-item">
                     <b>Likes</b>
                     ${item.likes}
@@ -88,10 +88,10 @@ function createMarkup(arr) {
                     <b>Downloads</b>
                     ${item.downloads}
                   </p>
-                </div>
-        </div>        
-        </div>
-    </a>`
+                  </div>
+                 </div>        
+            </div>
+          </a>`
     )
     .join('');
 
@@ -100,23 +100,9 @@ function createMarkup(arr) {
 }
 
 let simpleLightbox = new SimpleLightbox('.gallery a', {
-  onShow: () => {
-    document.addEventListener('keydown', closeModal);
-  },
-
-  onClose: () => {
-    document.removeEventListener('keydown', closeModal);
-  },
-
   captionDelay: 250,
   captionsData: 'alt',
 });
-
-function closeModal(e) {
-  if (e.key === 'Escape') {
-    template.close();
-  }
-}
 
 function notification(length, totalHits) {
   if (length === 0) {
@@ -127,30 +113,21 @@ function notification(length, totalHits) {
   }
 
   if (page === 1) {
-    refs.btnLoadMore.style.display = 'flex';
+    // refs.btnLoadMore.style.display = 'flex';
     Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
   }
 
   if (length < 40) {
-    refs.btnLoadMore.style.display = 'none';
     Notiflix.Notify.info(
       `We're sorry, but you've reached the end of search results.`
     );
   }
 }
-// const { height: cardHeight } = document
-//   .querySelector('.gallery')
-//   .firstElementChild.getBoundingClientRect();
-
-// window.scrollBy({
-//   top: cardHeight * 2,
-//   behavior: 'smooth',
-// });
 
 window.addEventListener('scroll', () => {
   const documentRect = document.documentElement.getBoundingClientRect();
 
-  if (documentRect.bottom < document.documentElement.clientHeight + 200) {
+  if (documentRect.bottom < document.documentElement.clientHeight + 150) {
     page++;
     onBtnLoadMore();
   }
