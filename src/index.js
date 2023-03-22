@@ -127,7 +127,7 @@ function notification(length, totalHits) {
 window.addEventListener('scroll', () => {
   const documentRect = document.documentElement.getBoundingClientRect();
 
-  if (documentRect.bottom < document.documentElement.clientHeight + 150) {
+  if (documentRect.bottom < document.documentElement.clientHeight + 250) {
     page++;
     onBtnLoadMore();
   }
